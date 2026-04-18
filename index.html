@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MEDUSA · Cinema Studio 3.5 Beginner's Guide · 5 Website Scenes</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500;600;700&family=Josefin+Sans:wght@100;200;300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#c9a84c;--gold2:#e8c96a;--ivory:#f5f0e8;--stone:#d4c5a9;
+  --obs:#07070b;--dark:#0d1016;--mid:#131720;--deep:#0c1e30;
+  --aegean:#183558;--gray:#6b7280;--terra:#c1440e;--serp:#2d5a3d;--s2:#3d7a52;
+  --cs:#7c3aed;--cs2:#a78bfa;--csbg:#100820;--csmid:#1a0f38;
+  --csb:rgba(124,58,237,.3);
+}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--obs);color:var(--ivory);font-family:'Cormorant Garamond',Georgia,serif;line-height:1.78;overflow-x:hidden;}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(7,7,11,.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,168,76,.1);padding:11px 40px;display:flex;align-items:center;justify-content:space-between;}
+.n-logo{font-family:'Cinzel',serif;font-size:11px;font-weight:600;color:var(--gold);letter-spacing:4px;}
+.n-links{display:flex;gap:2px;flex-wrap:wrap;}
+.n-link{font-family:'Josefin Sans',sans-serif;font-size:8px;font-weight:200;letter-spacing:2px;color:var(--gray);text-decoration:none;padding:4px 8px;border:1px solid transparent;text-transform:uppercase;transition:all .2s;}
+.n-link:hover{color:var(--gold);border-color:rgba(201,168,76,.22);}
+.hero{min-height:100vh;background:linear-gradient(168deg,var(--csbg) 0%,var(--obs) 50%,rgba(11,37,37,.5) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:100px 40px 80px;text-align:center;}
+.hg{position:absolute;inset:0;background-image:linear-gradient(rgba(124,58,237,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,.03) 1px,transparent 1px);background-size:50px 50px;}
+.hglow{position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);width:900px;height:500px;background:radial-gradient(ellipse,rgba(124,58,237,.07) 0%,rgba(201,168,76,.04) 45%,transparent 70%);pointer-events:none;}
+.tbar{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--cs),var(--gold),var(--cs),transparent);}
+.hi{position:relative;z-index:2;max-width:880px;}
+.heye{font-family:'Josefin Sans',sans-serif;font-size:9px;font-weight:200;letter-spacing:8px;color:var(--gold);text-transform:uppercase;margin-bottom:18px;opacity:.88;}
+.hcs{font-family:'Cinzel',serif;font-size:clamp(13px,2.5vw,20px);font-weight:400;letter-spacing:6px;color:var(--cs2);margin-bottom:4px;}
+.htitle{font-family:'Cinzel',serif;font-size:clamp(40px,7.5vw,88px);font-weight:700;letter-spacing:8px;color:var(--ivory);line-height:1;margin-bottom:5px;}
+.htitle span{color:var(--gold);}
+.hrule{width:100px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:18px auto;}
+.hsub{font-size:17px;font-style:italic;font-weight:300;color:var(--stone);letter-spacing:2px;margin-bottom:12px;}
+.hdesc{font-size:14px;color:var(--gray);max-width:660px;margin:0 auto 36px;line-height:1.97;}
+.chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.chip{font-family:'Josefin Sans',sans-serif;font-size:8px;font-weight:200;letter-spacing:3px;color:var(--gold);text-transform:uppercase;border:1px solid rgba(201,168,76,.28);padding:6px 16px;}
+.chip.cs{color:var(--cs2);border-color:var(--csb);background:rgba(124,58,237,.07);}
+.chip.on{background:rgba(201,168,76,.07);}
+.intro{background:linear-gradient(90deg,var(--csbg),rgba(28,12,60,.75),var(--csbg));padding:36px 60px;text-align:center;}
+.intro p{font-size:15px;font-style:italic;color:var(--stone);max-width:760px;margin:0 auto;line-height:1.96;}
+.intro strong{color:var(--gold2);font-style:normal;}
+.intro .csp{color:var(--cs2);font-style:normal;}
+.wrap{max-width:1040px;margin:0 auto;padding:0 40px 100px;}
+.sdiv{display:flex;align-items:center;gap:16px;padding:48px 0 28px;}
+.sl{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.28));}
+.sr{flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,.28),transparent);}
+.st{font-family:'Cinzel',serif;font-size:9px;font-weight:500;letter-spacing:5px;color:var(--gold);text-transform:uppercase;opacity:.68;white-space:nowrap;}
+.conn{width:2px;height:18px;background:linear-gradient(180deg,rgba(124,58,237,.4),transparent);margin:0 0 0 44px;}
+.fdiv{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.2),transparent);margin:60px 0 0;}
+.smap{display:grid;gap:2px;background:rgba(201,168,76,.1);margin:20px 0;}
+.smrow{display:grid;grid-template-columns:46px 155px 1fr 80px 90px 80px;gap:2px;}
+.smc{background:var(--obs);padding:11px 12px;font-size:12px;color:var(--stone);display:flex;align-items:center;}
+.smc.head{font-family:'Josefin Sans',sans-serif;font-size:7px;font-weight:300;letter-spacing:3px;color:var(--gold);text-transform:uppercase;background:rgba(24,53,88,.5);}
+.smn{font-family:'Cinzel',serif;font-size:18px;color:var(--gold);opacity:.7;}
+.smname{font-family:'Cinzel',serif;font-size:10px;color:var(--ivory);}
+.smmodel{font-family:'Josefin Sans',sans-serif;font-size:7px;font-weight:300;letter-spacing:2px;color:var(--cs2);text-transform:uppercase;}
+.smgenre{font-family:'Josefin Sans',sans-serif;font-size:7px;font-weight:300;letter-spacing:2px;color:var(--gold);text-transform:uppercase;}
+.scard{display:grid;grid-template-columns:90px 1fr;gap:0;margin-bottom:6px;background:var(--mid);border:1px solid var(--csb);position:relative;overflow:hidden;transition:border-color .28s;}
+.scard:hover{border-color:rgba(124,58,237,.5);}
+.scard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cs),var(--gold),transparent);opacity:0;transition:opacity .28s;}
+.scard:hover::before{opacity:1;}
+.nc{background:linear-gradient(180deg,var(--csmid),rgba(12,8,24,.7));border-right:1px solid var(--csb);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:26px 0 20px;}
+.nclbl{font-family:'Josefin Sans',sans-serif;font-size:7px;font-weight:200;letter-spacing:3px;color:var(--cs2);text-transform:uppercase;opacity:.68;margin-bottom:4px;}
+.ncnum{font-family:'Cinzel',serif;font-size:44px;font-weight:700;color:var(--cs2);line-height:1;opacity:.8;}
+.ncico{font-size:19px;margin-top:14px;opacity:.45;}
+.sb{padding:28px 34px;}
+.stag{font-family:'Josefin Sans',sans-serif;font-size:7px;font-weight:300;letter-spacing:4px;color:var(--s2);text-transform:uppercase;background:rgba(45,90,61,.12);border:1px solid rgba(45,90,61,.26);padding:3px 10px;display:inline-block;margin-bottom:10px;}
+.stag.cst{color:var(--cs2);background:rgba(124,58,237,.09);border-color:var(--csb);}
+.stitle{font-family:'Cinzel',serif;font-size:20px;font-weight:700;letter-spacing:2px;color:var(--ivory);text-transform:uppercase;margin-bottom:5px;}
+.ssub{font-family:'Josefin Sans',sans-serif;font-size:9px;font-weight:200;letter-spacing:4px;color:var(--gold);text-transform:uppercase;opacity:.78;margin-bottom:18px;}
+.sb p{font-size:14px;color:var(--stone);line-height:1.88;margin-bottom:14px;}
+.sb p strong{color:var(--ivory);}
+.acts{list-style:none;margin:14px 0;}
+.act{display:flex;align-items:flex-start;gap:14px;padding:10px 0;border-bottom:1px solid rgba(124,58,237,.09);font-size:14px;color:var(--stone);line-height:1.72;}
+.act:last-child{border-bottom:none;}
+.abull{flex-shrink:0;width:22px;height:22px;border:1px solid var(--cs2);display:flex;align-items:center;justify-content:center;color:var(--cs2);font-family:'Josefin Sans',sans-serif;font-size:9px;font-weight:300;margin-top:2px;}
+.act strong{color:var(--gold2);}
+.schips{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0;}
+.sch{background:var(--csmid);border:1px solid var(--csb);padding:8px 16px;display:flex;flex-direction:column;gap:3px;min-width:110px;}
+.sk{font-family:'Josefin Sans',sans-serif;font-size:7px;font-weight:200;letter-spacing:3px;color:var(--cs2);text-transform:uppercase;opacity:.8;}
+.sv{font-family:'Josefin Sans',sans-serif;font-size:10px;font-weight:300;color:var(--ivory);letter-spacing:1px;}
+.rig{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(201,168,76,.1);margin:14px 0;}
+.rigc{background:var(--csbg);padding:14px 16px;}
+.rigk{font-family:'Josefin Sans',sans-serif;font-size:7px;font-weight:200;letter-spacing:3px;color:var(--cs2);text-transform:uppercase;margin-bottom:5px;}
+.rigv{font-family:'Josefin Sans',sans-serif;font-size:12px;font-weight:300;color:var(--ivory);}
+.parea{margin:18px 0 10px;}
+.plbl{font-family:'Josefin Sans',sans-serif;font-size:8px;font-weight:300;letter-spacing:5px;color:var(--gold2);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:10px;}
+.plbl::after{content:'';flex:1;height:1px;background:rgba(201,168,76,.16);}
+.ptag{font-family:'Josefin Sans',sans-serif;font-size:7px;font-weight:300;letter-spacing:3px;color:var(--cs2);text-transform:uppercase;background:rgba(124,58,237,.12);border:1px solid var(--csb);padding:3px 10px;display:inline-block;margin-bottom:8px;}
+.pbox{background:rgba(16,8,32,.9);border:1px solid var(--csb);border-top:2px solid var(--cs);padding:20px 24px;margin-bottom:6px;}
+.ptext{font-size:13.5px;font-style:italic;color:var(--ivory);line-height:2.08;opacity:.92;}
+.ptext em{color:var(--gold2);font-style:normal;font-weight:500;}
+.pmeta{margin-top:12px;padding-top:10px;border-top:1px solid rgba(124,58,237,.15);display:flex;gap:18px;flex-wrap:wrap;}
+.pm{font-family:'Josefin Sans',sans-serif;font-size:8px;font-weight:200;letter-spacing:3px;color:var(--gray);text-transform:uppercase;}
+.pm strong{color:var(--stone);font-weight:300;}
+.mrbox{background:rgba(124,58,237,.08);border:1px solid var(--csb);border-left:3px solid var(--cs);padding:16px 20px;margin:14px 0;}
+.mrbox .blbl{font-family:'Josefin Sans',sans-serif;font-size:7px;font-weight:300;letter-spacing:4px;text-transform:uppercase;color:var(--cs2);margin-bottom:8px;}
+.mrbox .btext{font-size:13px;color:var(--stone);line-height:1.78;}
+.mrbox .btext strong{color:var(--ivory);}
+.mrbox .btext em{color:var(--cs2);}
+.tip{background:rgba(45,90,61,.1);border:1px solid rgba(45,90,61,.26);border-left:3px solid var(--serp);padding:16px 20px;margin:14px 0;}
+.warn{background:rgba(193,68,14,.08);border:1px solid rgba(193,68,14,.26);border-left:3px solid var(--terra);padding:16px 20px;margin:14px 0;}
+.info{background:rgba(24,53,88,.2);border:1px solid rgba(24,53,88,.4);border-left:3px solid var(--gold);padding:16px 20px;margin:14px 0;}
+.blbl{font-family:'Josefin Sans',sans-serif;font-size:7px;font-weight:300;letter-spacing:4px;text-transform:uppercase;margin-bottom:8px;}
+.tip .blbl{color:var(--s2);}
+.warn .blbl{color:var(--terra);}
+.info .blbl{color:var(--gold);}
+.btext{font-size:13px;color:var(--stone);line-height:1.78;}
+.btext strong{color:var(--ivory);}
+.btext em{color:var(--gold2);}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(201,168,76,.1);margin:16px 0;}
+.plan{background:var(--dark);padding:18px 14px;}
+.plan-name{font-family:'Cinzel',serif;font-size:12px;font-weight:600;color:var(--gold2);margin-bottom:5px;}
+.plan-price{font-family:'Josefin Sans',sans-serif;font-size:15px;font-weight:300;color:var(--ivory);margin-bottom:7px;}
+.plan-detail{font-size:12px;color:var(--gray);line-height:1.65;}
+.plan-rec{font-family:'Josefin Sans',sans-serif;font-size:7px;font-weight:300;letter-spacing:3px;color:var(--cs2);text-transform:uppercase;margin-top:8px;}
+.plan.hl{border:1px solid var(--csb);background:var(--csbg);}
+.brief-box{background:var(--csbg);border:1px solid var(--csb);border-top:2px solid var(--cs);padding:20px 24px;margin:14px 0;}
+.brief-label{font-family:'Josefin Sans',sans-serif;font-size:8px;font-weight:300;letter-spacing:5px;color:var(--cs2);text-transform:uppercase;margin-bottom:12px;}
+.brief-text{font-size:14px;font-style:italic;color:var(--ivory);line-height:1.95;opacity:.9;}
+.brief-text em{color:var(--gold2);font-style:normal;}
+.qref{display:grid;gap:2px;background:rgba(201,168,76,.1);margin:20px 0;}
+.qrrow{display:grid;grid-template-columns:200px 1fr;gap:2px;}
+.qrk{background:rgba(16,8,32,.6);padding:12px 16px;font-family:'Josefin Sans',sans-serif;font-size:8px;font-weight:200;letter-spacing:3px;color:var(--gold);text-transform:uppercase;display:flex;align-items:center;}
+.qrv{background:var(--obs);padding:12px 16px;font-size:13px;color:var(--stone);display:flex;align-items:center;line-height:1.65;}
+.qcl{list-style:none;margin:12px 0;}
+.qci{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid rgba(124,58,237,.08);font-size:14px;color:var(--stone);line-height:1.7;}
+.qci:last-child{border-bottom:none;}
+.qcb{flex-shrink:0;width:24px;height:24px;border:1px solid rgba(61,122,82,.5);background:rgba(45,90,61,.1);display:flex;align-items:center;justify-content:center;color:var(--s2);font-family:'Josefin Sans',sans-serif;font-size:10px;font-weight:300;margin-top:1px;}
+.footer{background:var(--obs);border-top:1px solid rgba(201,168,76,.14);padding:50px 40px;text-align:center;}
+.fl{font-family:'Cinzel',serif;font-size:13px;font-weight:600;letter-spacing:5px;color:var(--gold);margin-bottom:10px;}
+.ft{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--gray);margin-bottom:14px;}
+.fc{font-family:'Josefin Sans',sans-serif;font-size:7px;font-weight:200;letter-spacing:4px;color:rgba(107,114,128,.38);text-transform:uppercase;}
+@media(max-width:700px){.nav .n-links{display:none;}.scard{grid-template-columns:65px 1fr;}.plans{grid-template-columns:1fr 1fr;}.smrow{grid-template-columns:1fr 1fr;}.rig{grid-template-columns:1fr 1fr;}.wrap,.intro{padding:0 20px 60px;}.hero{padding:90px 20px 60px;}.qrrow{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="n-logo">MEDUSA × Cinema Studio 3.5</div>
+  <div class="n-links">
+    <a class="n-link" href="#s1">01 Account</a><a class="n-link" href="#s2">02 Interface</a>
+    <a class="n-link" href="#s3">03 Mr. Higgs</a><a class="n-link" href="#s4">04 Elements</a>
+    <a class="n-link" href="#s5">05 Scene 01</a><a class="n-link" href="#s6">06 Scene 02</a>
+    <a class="n-link" href="#s7">07 Scene 03</a><a class="n-link" href="#s8">08 Scene 04</a>
+    <a class="n-link" href="#s9">09 Scene 05</a><a class="n-link" href="#s10">10 QC & Deploy</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hg"></div><div class="hglow"></div><div class="tbar"></div>
+  <div class="hi">
+    <div class="heye">Umbra Stream · MEDUSA · Higgsfield · Cinema Studio 3.5 · Beginner's Guide</div>
+    <div class="hcs">CINEMA STUDIO 3.5</div>
+    <div class="htitle">5 SCENES<br><span>FOR THE SITE</span></div>
+    <div class="hrule"></div>
+    <div class="hsub">Memorable · 6 Seconds · Cinema Studio 3.5 Production-Ready · Villeneuve Style</div>
+    <p class="hdesc">You have never used Cinema Studio 3.5 before. This guide takes you from zero — account setup — through generating all five MEDUSA website scenes using Higgsfield's professional AI filmmaking environment. Every optical setting, genre, model, and prompt is included and ready to use.</p>
+    <div class="chips">
+      <div class="chip on">10 Steps</div><div class="chip cs">Cinema Studio 3.5</div>
+      <div class="chip">5 Complete Scenes</div><div class="chip">Mr. Higgs Director</div>
+      <div class="chip">Elements System</div><div class="chip">Villeneuve Style</div>
+    </div>
+  </div>
+</section>
+
+<div class="intro">
+  <p>Cinema Studio 3.5 is <span class="csp">Higgsfield's professional AI filmmaking environment</span> — the only AI video tool built around real optical physics. Choose your camera body, lens, focal length, and aperture before generating a single frame. <strong>Mr. Higgs — the built-in AI co-director — understands the project, breaks scenes into shots, selects camera settings, and populates prompts in real time.</strong> The Elements system locks characters and locations across every generation. This is not a text-to-video tool. It is a film studio.</p>
+</div>
+
+<div class="wrap">
+<div class="sdiv"><div class="sl"></div><div class="st">What You Are Building</div><div class="sr"></div></div>
+<div class="smap">
+  <div class="smrow">
+    <div class="smc head">#</div><div class="smc head">Scene</div><div class="smc head">What It Shows</div>
+    <div class="smc head">Genre</div><div class="smc head">Model</div><div class="smc head">Color</div>
+  </div>
+  <div class="smrow">
+    <div class="smc"><div class="smn">01</div></div>
+    <div class="smc"><div class="smname">The Serpents Wake</div></div>
+    <div class="smc">Extreme macro of living serpent scales — abstract until recognition hits</div>
+    <div class="smc"><div class="smgenre">Horror</div></div>
+    <div class="smc"><div class="smmodel">Kling 3.0</div></div>
+    <div class="smc">3200K cold</div>
+  </div>
+  <div class="smrow">
+    <div class="smc"><div class="smn">02</div></div>
+    <div class="smc"><div class="smname">The Lamp</div></div>
+    <div class="smc">Temple oil lamp gutters at 2 seconds without cause then recovers</div>
+    <div class="smc"><div class="smgenre">Drama</div></div>
+    <div class="smc"><div class="smmodel">Kling 3.0</div></div>
+    <div class="smc">4500K warm</div>
+  </div>
+  <div class="smrow">
+    <div class="smc"><div class="smn">03</div></div>
+    <div class="smc"><div class="smname">She Reads Stone</div></div>
+    <div class="smc">Medusa walks stone garden eyes closed, hand reads frozen face</div>
+    <div class="smc"><div class="smgenre">Horror</div></div>
+    <div class="smc"><div class="smmodel">Seedance 2.0</div></div>
+    <div class="smc">3200K cold</div>
+  </div>
+  <div class="smrow">
+    <div class="smc"><div class="smn">04</div></div>
+    <div class="smc"><div class="smname">The Sea Stops</div></div>
+    <div class="smc">Mirror-flat impossible ocean — divine horror without a visible cause</div>
+    <div class="smc"><div class="smgenre">Horror</div></div>
+    <div class="smc"><div class="smmodel">Sora 2</div></div>
+    <div class="smc">3200K navy</div>
+  </div>
+  <div class="smrow">
+    <div class="smc"><div class="smn">05</div></div>
+    <div class="smc"><div class="smname">White Wings in Dark</div></div>
+    <div class="smc">Pegasus rising — only pure white in the film, slow motion, IMAX scale</div>
+    <div class="smc"><div class="smgenre">Epic</div></div>
+    <div class="smc"><div class="smmodel">Seedance 2.0</div></div>
+    <div class="smc">White in cold</div>
+  </div>
+</div>
+
+<!-- STEPS -->
+<div class="sdiv"><div class="sl"></div><div class="st">The Ten Steps</div><div class="sr"></div></div>
+
+<!-- S1 -->
+<div id="s1" class="scard">
+  <div class="nc"><div class="nclbl">Step</div><div class="ncnum">01</div><div class="ncico">🎬</div></div>
+  <div class="sb">
+    <div class="stag cst">Account & Plans</div>
+    <div class="stitle">Create Your Higgsfield Account</div>
+    <div class="ssub">higgsfield.ai · Plan Selection · Credit System</div>
+    <p>Cinema Studio 3.5 lives inside Higgsfield. You need a Higgsfield account and a paid plan. Higgsfield uses a credit system — different models consume different amounts of credits per generation. Premium models like Sora 2 are credit-intensive.</p>
+    <div class="plans">
+      <div class="plan"><div class="plan-name">Basic / Free</div><div class="plan-price">$0–$9/mo</div><div class="plan-detail">150 monthly credits. Limited model access. Enough to test 1–2 scenes at low credit cost. Credit burn is fast with premium models.</div><div class="plan-rec">Testing only</div></div>
+      <div class="plan hl"><div class="plan-name">Creator</div><div class="plan-price">~$29/mo</div><div class="plan-detail">Full Cinema Studio 3.5 access. Kling 3.0, Seedance 2.0, and Sora 2 included. Enough credits for all 5 MEDUSA scenes with iterations.</div><div class="plan-rec">Recommended</div></div>
+      <div class="plan hl"><div class="plan-name">Pro</div><div class="plan-price">~$84/mo</div><div class="plan-detail">Higher credit allocation. Priority generation. All models including premium options. Best for the full MEDUSA pipeline with multiple iterations per scene.</div><div class="plan-rec">Best for production</div></div>
+      <div class="plan"><div class="plan-name">Extra Credits</div><div class="plan-price">Variable</div><div class="plan-detail">Purchasable top-ups on any plan. Expire in 90 days. Useful when you need more iterations for a specific scene without upgrading your plan.</div><div class="plan-rec">Supplement</div></div>
+    </div>
+    <ul class="acts">
+      <li class="act"><div class="abull">1</div><div>Go to <strong>higgsfield.ai</strong> and click Sign Up — register with Google, Apple, or Microsoft</div></li>
+      <li class="act"><div class="abull">2</div><div>Account creation takes approximately 30 seconds. You arrive directly at the main dashboard</div></li>
+      <li class="act"><div class="abull">3</div><div>Click your profile icon → <strong>Upgrade Plan</strong> → select Creator or Pro. Both give full Cinema Studio 3.5 access</div></li>
+      <li class="act"><div class="abull">4</div><div>Note your <strong>starting credit balance</strong> in the top right — monitor throughout the session. Sora 2 can consume 50+ credits per generation</div></li>
+      <li class="act"><div class="abull">5</div><div>In the main navigation, click <strong>Cinema Studio</strong> — this opens the professional filmmaking environment where all five MEDUSA scenes will be generated</div></li>
+    </ul>
+    <div class="info"><div class="blbl">Credit Warning</div><div class="btext">Always check credit cost before hitting Generate. One Sora 2 generation can use 50+ credits. On a 150-credit Basic plan that is 3 total generations. Creator or Pro plan is strongly recommended for all five MEDUSA scenes with room for multiple iterations.</div></div>
+  </div>
+</div>
+<div class="conn"></div>
+
+<!-- S2 -->
+<div id="s2" class="scard">
+  <div class="nc"><div class="nclbl">Step</div><div class="ncnum">02</div><div class="ncico">🗺</div></div>
+  <div class="sb">
+    <div class="stag cst">Interface Navigation</div>
+    <div class="stitle">Navigate Cinema Studio 3.5</div>
+    <div class="ssub">Optical Rig · Genre Panel · Model Selector · Duration · Camera Movement</div>
+    <p>Cinema Studio 3.5 is organized around a directorial workflow — set up the optical rig first, then choose genre, then write the prompt. This is the opposite of most AI tools. Understanding each panel before generating saves significant credit.</p>
+    <ul class="acts">
+      <li class="act"><div class="abull">1</div><div>Click <strong>Cinema Studio</strong> in the main navigation. The studio workspace opens with a central prompt field and control panels on the sides</div></li>
+      <li class="act"><div class="abull">2</div><div>Find the <strong>OPTICAL RIG panel</strong> — Cinema Studio's defining feature. Camera body, lens type, focal length, aperture. Set these before writing any prompt</div></li>
+      <li class="act"><div class="abull">3</div><div>Find the <strong>GENRE panel</strong> — shapes pacing, motion energy, and visual tone. Available genres for MEDUSA: Horror, Drama, Epic</div></li>
+      <li class="act"><div class="abull">4</div><div>Find the <strong>MODEL SELECTOR</strong> — dropdown showing Kling 3.0, Seedance 2.0, Sora 2, WAN 2.5, and others. Each model has different credit cost and visual character</div></li>
+      <li class="act"><div class="abull">5</div><div>Set <strong>Duration: 6 seconds</strong> for all MEDUSA website scenes. Aspect ratio: <strong>16:9</strong></div></li>
+      <li class="act"><div class="abull">6</div><div>Find the <strong>CAMERA MOVEMENT panel</strong> — Cinema Studio allows stacking up to 3 simultaneous movements. For MEDUSA: Static only (except Scene 03 which uses imperceptible slow dolly)</div></li>
+    </ul>
+    <div class="rig">
+      <div class="rigc"><div class="rigk">Camera Scenes 01–04</div><div class="rigv">ARRI</div></div>
+      <div class="rigc"><div class="rigk">Camera Scene 05</div><div class="rigv">IMAX only</div></div>
+      <div class="rigc"><div class="rigk">Lens — All Scenes</div><div class="rigv">Anamorphic</div></div>
+      <div class="rigc"><div class="rigk">Aperture — All</div><div class="rigv">f/1.8 – f/2</div></div>
+    </div>
+    <div class="mrbox"><div class="blbl">Why ARRI + Anamorphic for MEDUSA</div><div class="btext">The <strong>ARRI camera body</strong> produces the color science and dynamic range of prestige cinema — the same camera used on Arrival, Dune, and Annihilation. The <strong>Anamorphic lens</strong> creates the distinctive horizontal lens flares and oval bokeh that signals "serious film." <em>Setting these before the prompt means Cinema Studio 3.5 generates Villeneuve-grade optics from the first frame.</em></div></div>
+  </div>
+</div>
+<div class="conn"></div>
+
+<!-- S3 -->
+<div id="s3" class="scard">
+  <div class="nc"><div class="nclbl">Step</div><div class="ncnum">03</div><div class="ncico">🎥</div></div>
+  <div class="sb">
+    <div class="stag cst">AI Co-Director</div>
+    <div class="stitle">Brief Mr. Higgs</div>
+    <div class="ssub">Built-In AI Director · Project Brief · How to Direct Each Scene</div>
+    <p><strong>Mr. Higgs</strong> is Cinema Studio 3.5's built-in AI co-director. He understands your project context — characters, locations, style, camera settings — and breaks your description into shots, adjusts settings, and populates prompts in real time. Brief him once at the start of each session.</p>
+    <ul class="acts">
+      <li class="act"><div class="abull">1</div><div>Inside Cinema Studio 3.5, find the <strong>Mr. Higgs panel</strong> — accessible from a chat icon or "AI Director" button in the interface</div></li>
+      <li class="act"><div class="abull">2</div><div>Give Mr. Higgs the full MEDUSA project brief below — he reads it and applies context to all subsequent generations in this session</div></li>
+      <li class="act"><div class="abull">3</div><div>After briefing, direct him for each scene: <em>"Set up Scene 01 — extreme close-up macro, serpent scales, After World, cold 3200K, Horror genre, Kling 3.0, ARRI Anamorphic 100mm f/2"</em></div></li>
+      <li class="act"><div class="abull">4</div><div>Mr. Higgs will populate the optical rig, select genre, choose model, and draft a starting prompt — review and adjust before generating</div></li>
+      <li class="act"><div class="abull">5</div><div>You can override any Mr. Higgs suggestion. He is a starting point and time-saver, not a replacement for your creative direction. Always use the full prompts from this guide</div></li>
+    </ul>
+    <div class="brief-box">
+      <div class="brief-label">Mr. Higgs Project Brief — Copy and Paste at Session Start</div>
+      <div class="brief-text">This is <em>MEDUSA</em> — a mythological psychological horror film for Umbra Stream LLC. Directorial register: <em>Denis Villeneuve × Christopher Nolan.</em> The camera worships the world. Nothing moves fast. Dread through stillness and scale, not shock. Every frame should feel like Villeneuve's Arrival or Dune — shot on ARRI with Anamorphic lenses, sacred atmosphere, deep focus, 35mm film grain. Two visual worlds: the <em>Before World</em> (warm 4500K amber, priestess temple, ivory and honey) and the <em>After World</em> (cold 3200K teal, cave system, stone and serpents). All website scenes are After World except Scene 02 which is Before World. Genre map: Scenes 01, 03, 04 = Horror. Scene 02 = Drama. Scene 05 = Epic. Model map: Scenes 01, 02 = Kling 3.0. Scenes 03, 05 = Seedance 2.0. Scene 04 = Sora 2. Camera map: Scenes 01–04 = ARRI Anamorphic. Scene 05 = IMAX Anamorphic. All camera movements must be static or an imperceptible slow dolly only. Duration: 6 seconds per scene. The horror is in the beauty and the stillness.</div>
+    </div>
+    <div class="tip"><div class="blbl">Mr. Higgs Working Method</div><div class="btext">Use Mr. Higgs as a shot setup assistant. Tell him what you want in plain language, let him configure the rig and draft a starting prompt. Then replace his draft with the full prompt from this guide before hitting Generate. This approach saves setup time without sacrificing prompt precision.</div></div>
+  </div>
+</div>
+<div class="conn"></div>
+
+<!-- S4 -->
+<div id="s4" class="scard">
+  <div class="nc"><div class="nclbl">Step</div><div class="ncnum">04</div><div class="ncico">📦</div></div>
+  <div class="sb">
+    <div class="stag cst">Elements System</div>
+    <div class="stitle">Build Your MEDUSA Elements</div>
+    <div class="ssub">@MEDUSA_AFTER · @STONE_GARDEN · Character Lock · Location Lock</div>
+    <p>Elements are Cinema Studio 3.5's system for locking characters, locations, and props as reusable assets referenced with @tags across every generation. Build these two core Elements before generating any scene that includes Medusa or the stone garden.</p>
+    <ul class="acts">
+      <li class="act"><div class="abull">1</div><div>In Cinema Studio 3.5, find the <strong>Elements panel</strong> in the sidebar or dedicated Elements tab</div></li>
+      <li class="act"><div class="abull">2</div><div>Click <strong>Create Element → Character</strong></div></li>
+      <li class="act"><div class="abull">3</div><div>Upload your approved <strong>MEDUSA_REF_AFTER.jpg</strong> as the anchor image — this locks Medusa's face, serpents, and costume</div></li>
+      <li class="act"><div class="abull">4</div><div>Name the Element: <strong>@MEDUSA_AFTER</strong> — Save. You can now call this character into any generation by typing @MEDUSA_AFTER in the prompt</div></li>
+      <li class="act"><div class="abull">5</div><div>Click <strong>Create Element → Location</strong></div></li>
+      <li class="act"><div class="abull">6</div><div>Write the location description: <em>"Ancient Mediterranean coastal cave system. Stone figures frozen mid-movement. Cold 3200K teal light. Cave floor covered in thousands of carved owls. Cathedral-scale interior."</em></div></li>
+      <li class="act"><div class="abull">7</div><div>Name the Element: <strong>@STONE_GARDEN</strong> — Save. This location is now callable across all After World scene prompts</div></li>
+    </ul>
+    <div class="mrbox"><div class="blbl">Why Elements Are Critical for Scene 03</div><div class="btext">Without <strong>@MEDUSA_AFTER locked from MEDUSA_REF_AFTER.jpg</strong>, Cinema Studio 3.5 generates a different-looking character every time. The Elements system is what makes character consistency possible across multiple generations. <em>Build both elements before attempting any scene featuring Medusa or the stone garden.</em></div></div>
+  </div>
+</div>
+<div class="conn"></div>
+
+<!-- S5 -->
+<div id="s5" class="scard">
+  <div class="nc"><div class="nclbl">Step</div><div class="ncnum">05</div><div class="ncico">🐍</div></div>
+  <div class="sb">
+    <div class="stag">Scene 01 · Website Hero Loop</div>
+    <div class="stitle">Generate: The Serpents Wake</div>
+    <div class="ssub">Extreme Macro Close-Up · After World · Horror · Kling 3.0 · 3200K Cold · Static</div>
+    <p>The first image every visitor sees. Extreme macro close-up of living serpent scales — abstract until recognition hits. No characters, no face. Pure texture, cold teal light, something alive. Horror genre ensures weighted, deliberate pacing. Kling 3.0 handles organic serpent movement with precision.</p>
+    <ul class="acts">
+      <li class="act"><div class="abull">1</div><div>Open Cinema Studio 3.5 and configure the <strong>optical rig</strong> as shown below before touching the prompt</div></li>
+      <li class="act"><div class="abull">2</div><div>Select <strong>Genre: Horror</strong> — applies dread pacing and weighted motion energy</div></li>
+      <li class="act"><div class="abull">3</div><div>Select <strong>Model: Kling 3.0</strong> from the model selector</div></li>
+      <li class="act"><div class="abull">4</div><div>Set <strong>Duration: 6 seconds</strong> · Ratio: <strong>16:9</strong> · Camera Movement: <strong>Static</strong></div></li>
+      <li class="act"><div class="abull">5</div><div>Paste the full prompt below into the prompt field</div></li>
+      <li class="act"><div class="abull">6</div><div>Click Generate — wait 2–5 minutes. Preview: cold color throughout, slow organic movement, no warm tones</div></li>
+    </ul>
+    <div class="rig">
+      <div class="rigc"><div class="rigk">Camera</div><div class="rigv">ARRI</div></div>
+      <div class="rigc"><div class="rigk">Lens</div><div class="rigv">Anamorphic</div></div>
+      <div class="rigc"><div class="rigk">Focal Length</div><div class="rigv">100mm macro</div></div>
+      <div class="rigc"><div class="rigk">Aperture</div><div class="rigv">f/2</div></div>
+    </div>
+    <div class="schips">
+      <div class="sch"><div class="sk">Genre</div><div class="sv">Horror</div></div>
+      <div class="sch"><div class="sk">Model</div><div class="sv">Kling 3.0</div></div>
+      <div class="sch"><div class="sk">Duration</div><div class="sv">6 seconds</div></div>
+      <div class="sch"><div class="sk">Camera</div><div class="sv">Static — zero motion</div></div>
+      <div class="sch"><div class="sk">Color</div><div class="sv">3200K cold teal</div></div>
+    </div>
+    <div class="parea">
+      <div class="plbl">Full Cinema Studio 3.5 Prompt — Copy Exactly</div>
+      <div class="ptag">Scene 01 · The Serpents Wake · CS 3.5 · Kling 3.0 · Horror · ARRI Anamorphic 100mm f/2</div>
+      <div class="pbox">
+        <div class="ptext">Extreme macro close-up of living serpents — <em>dark olive-green scales, each scale catching cold blue-teal torchlight from a single source below frame.</em> One serpent slowly lifts its head, tongue briefly visible, then settles. The movement is breathing-slow, organic, ancient. No human face visible — only scales, shadow, and subtle motion. Background is absolute cave darkness. <em>Cold 3200K color grade. Deep teal shadows. No warm tones anywhere in frame. 35mm film grain.</em> Anamorphic lens — one serpent sharp in foreground, others softly blurred behind. The texture of the scales fills most of the frame. Cinematic. Psychological. <em>Camera: absolutely still throughout. No movement. Seamless loop point at 6 seconds.</em> Villeneuve Arrival / Annihilation aesthetic — sacred dread through texture and cold light alone.</div>
+        <div class="pmeta">
+          <div class="pm">Camera: <strong>ARRI · Anamorphic · 100mm macro · f/2</strong></div>
+          <div class="pm">Genre: <strong>Horror</strong></div><div class="pm">Model: <strong>Kling 3.0</strong></div>
+          <div class="pm">Duration: <strong>6s · 16:9</strong></div><div class="pm">Motion: <strong>Static</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="tip"><div class="blbl">What a Good Result Looks Like</div><div class="btext">Scales fill most of the frame. Color is cold blue-teal throughout — no amber anywhere. One serpent lifts and settles with breathing rhythm. If camera moves: add <strong>"camera: locked off, absolutely still, zero movement, no shake, no drift"</strong> and regenerate. If color is too warm: add <strong>"cold 3200K grade, no warm tones, cold deep teal and black only"</strong>.</div></div>
+  </div>
+</div>
+<div class="conn"></div>
+
+<!-- S6 -->
+<div id="s6" class="scard">
+  <div class="nc"><div class="nclbl">Step</div><div class="ncnum">06</div><div class="ncico">🕯</div></div>
+  <div class="sb">
+    <div class="stag">Scene 02 · About Section Header</div>
+    <div class="stitle">Generate: The Lamp She Will Not Extinguish</div>
+    <div class="ssub">Temple Interior · Before World · Drama · Kling 3.0 · 4500K Warm · Flame Gutters at 2s</div>
+    <p>The only Before World scene. Warm, sacred, almost comforting — then at exactly 2 seconds the flame gutters without cause. The whole film in six seconds. Drama genre carries measured emotional weight without aggressive dread.</p>
+    <ul class="acts">
+      <li class="act"><div class="abull">1</div><div>Set the <strong>optical rig</strong> as shown below — ARRI, Anamorphic, 35mm, f/1.8</div></li>
+      <li class="act"><div class="abull">2</div><div>Select <strong>Genre: Drama</strong> — measured, sacred emotional pacing</div></li>
+      <li class="act"><div class="abull">3</div><div>Select <strong>Model: Kling 3.0</strong> · Duration: <strong>6 seconds</strong> · Ratio: <strong>16:9</strong></div></li>
+      <li class="act"><div class="abull">4</div><div>Camera Movement: <strong>Static — medium shot centered on flame</strong></div></li>
+      <li class="act"><div class="abull">5</div><div>Paste the prompt. The timing instruction for the flame gutter is embedded in the prompt text</div></li>
+      <li class="act"><div class="abull">6</div><div>If the flame gutters at the wrong moment or not at all: add <strong>"at exactly the 2-second mark the flame must visibly dip to near-extinguished for exactly one beat then fully recover"</strong> and regenerate</div></li>
+    </ul>
+    <div class="rig">
+      <div class="rigc"><div class="rigk">Camera</div><div class="rigv">ARRI</div></div>
+      <div class="rigc"><div class="rigk">Lens</div><div class="rigv">Anamorphic</div></div>
+      <div class="rigc"><div class="rigk">Focal Length</div><div class="rigv">35mm</div></div>
+      <div class="rigc"><div class="rigk">Aperture</div><div class="rigv">f/1.8</div></div>
+    </div>
+    <div class="schips">
+      <div class="sch"><div class="sk">Genre</div><div class="sv">Drama</div></div>
+      <div class="sch"><div class="sk">Model</div><div class="sv">Kling 3.0</div></div>
+      <div class="sch"><div class="sk">Duration</div><div class="sv">6 seconds</div></div>
+      <div class="sch"><div class="sk">Camera</div><div class="sv">Static — on flame</div></div>
+      <div class="sch"><div class="sk">Color</div><div class="sv">4500K warm amber</div></div>
+    </div>
+    <div class="parea">
+      <div class="plbl">Full Cinema Studio 3.5 Prompt — Copy Exactly</div>
+      <div class="ptag">Scene 02 · The Lamp · CS 3.5 · Kling 3.0 · Drama · ARRI Anamorphic 35mm f/1.8</div>
+      <div class="pbox">
+        <div class="ptext">Ancient Greek temple interior at night. <em>A single large oil lamp flame burns alone on a stone altar,</em> filling the chamber with warm amber light — 4500K. Limestone walls. Long shadows behind carved stone columns extending into darkness. An owl motif carved in low relief on the back wall catches the flame's light. The flame burns steady and warm for the first two seconds. Then — <em>at exactly 2 seconds — the flame gutters suddenly, without visible cause,</em> dipping almost to nothing. The room falls near-dark for one full beat. Then the flame recovers fully. The world is warm again. But something has changed. <em>Camera absolutely still. Medium shot centered on the lamp flame. Film grain. Anamorphic lens flare at flame edges — soft, warm. No characters in frame. 4500K warm color grade. Sacred, still atmosphere.</em> Villeneuve Arrival warm aesthetic — ivory, honey, amber. The horror is in the return to the light.</div>
+        <div class="pmeta">
+          <div class="pm">Camera: <strong>ARRI · Anamorphic · 35mm · f/1.8</strong></div>
+          <div class="pm">Genre: <strong>Drama</strong></div><div class="pm">Model: <strong>Kling 3.0</strong></div>
+          <div class="pm">Color: <strong>4500K — Before World only</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="mrbox"><div class="blbl">Mr. Higgs Direction for Scene 02</div><div class="btext">Tell Mr. Higgs: <em>"Drama genre, Before World, warm amber 4500K, medium shot on a single flame in a Greek temple interior, ARRI Anamorphic 35mm f/1.8, static camera. The flame must gutter at 2 seconds without cause then recover."</em> He configures the rig. Replace his draft prompt with the full prompt above before generating.</div></div>
+  </div>
+</div>
+<div class="conn"></div>
+
+<!-- S7 -->
+<div id="s7" class="scard">
+  <div class="nc"><div class="nclbl">Step</div><div class="ncnum">07</div><div class="ncico">👁</div></div>
+  <div class="sb">
+    <div class="stag">Scene 03 · Story Section</div>
+    <div class="stitle">Generate: She Reads the Stone</div>
+    <div class="ssub">@MEDUSA_AFTER · @STONE_GARDEN · Seedance 2.0 · Horror · Eyes Closed — Entire Clip</div>
+    <p>The character scene. Uses both core Elements: <strong>@MEDUSA_AFTER</strong> for consistency and <strong>@STONE_GARDEN</strong> for location. Seedance 2.0 provides physics-accurate body movement for the slow walk. Eyes closed throughout is non-negotiable — the moral heart of the entire scene.</p>
+    <ul class="acts">
+      <li class="act"><div class="abull">1</div><div>Confirm both Elements are built: <strong>@MEDUSA_AFTER</strong> and <strong>@STONE_GARDEN</strong> (Step 04)</div></li>
+      <li class="act"><div class="abull">2</div><div>Set the <strong>optical rig</strong> as shown below — ARRI, Anamorphic, 50mm, f/2</div></li>
+      <li class="act"><div class="abull">3</div><div>Select <strong>Genre: Horror</strong> · <strong>Model: Seedance 2.0</strong> · Duration: <strong>6 seconds</strong></div></li>
+      <li class="act"><div class="abull">4</div><div>Camera Movement: <strong>Imperceptible slow dolly forward</strong> — the one scene with camera motion, barely perceptible, tracking her movement</div></li>
+      <li class="act"><div class="abull">5</div><div>Paste the prompt — @MEDUSA_AFTER and @STONE_GARDEN appear in the prompt text, linking the Elements</div></li>
+      <li class="act"><div class="abull">6</div><div><strong>First check in preview: eyes.</strong> Watch every frame. Open at any point = immediate reject</div></li>
+    </ul>
+    <div class="rig">
+      <div class="rigc"><div class="rigk">Camera</div><div class="rigv">ARRI</div></div>
+      <div class="rigc"><div class="rigk">Lens</div><div class="rigv">Anamorphic</div></div>
+      <div class="rigc"><div class="rigk">Focal Length</div><div class="rigv">50mm</div></div>
+      <div class="rigc"><div class="rigk">Aperture</div><div class="rigv">f/2</div></div>
+    </div>
+    <div class="schips">
+      <div class="sch"><div class="sk">Elements</div><div class="sv">@MEDUSA_AFTER + @STONE_GARDEN</div></div>
+      <div class="sch"><div class="sk">Genre</div><div class="sv">Horror</div></div>
+      <div class="sch"><div class="sk">Model</div><div class="sv">Seedance 2.0</div></div>
+      <div class="sch"><div class="sk">Camera</div><div class="sv">Imperceptible dolly</div></div>
+      <div class="sch"><div class="sk">Color</div><div class="sv">3200K cold dawn</div></div>
+    </div>
+    <div class="parea">
+      <div class="plbl">Full Cinema Studio 3.5 Prompt — Copy Exactly</div>
+      <div class="ptag">Scene 03 · She Reads Stone · CS 3.5 · Seedance 2.0 · Horror · @MEDUSA_AFTER · @STONE_GARDEN</div>
+      <div class="pbox">
+        <div class="ptext">@MEDUSA_AFTER walks slowly through @STONE_GARDEN at cold dawn, <em>eyes completely closed for the entire duration of the clip — they never open, not even briefly.</em> She moves without looking, navigating every stone figure from memory. She reaches out and places her fingertips gently on the frozen stone face of a soldier, reading his expression the way the blind read text. <em>Living serpents move slowly with each breath and step. Cold 3200K light. Morning mist drifts between the stone figures.</em> The Aegean Sea visible far below the cliff edge. Camera tracks at barely perceptible forward speed — imperceptible slow dolly. Film grain. Anamorphic. <em>The tone is grief and care, not power. She knows every face by touch. She has always been more careful with the dead than anyone was with her.</em> Villeneuve Annihilation aesthetic — cold, deliberate, the horror is in the beauty.</div>
+        <div class="pmeta">
+          <div class="pm">Elements: <strong>@MEDUSA_AFTER · @STONE_GARDEN</strong></div>
+          <div class="pm">Camera: <strong>ARRI · Anamorphic · 50mm · f/2</strong></div>
+          <div class="pm">CRITICAL: <strong>Eyes closed — entire 6 seconds</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="warn"><div class="blbl">The Only Non-Negotiable Rule in MEDUSA Production</div><div class="btext">If Medusa's eyes open at any point in Scene 03 — <strong>reject the clip immediately.</strong> Eyes closed = the moral logic of the scene. Worth 5–6 regenerations. If it keeps failing: add <strong>"character's eyes are physically closed, eyelids shut, eyes do not open at any moment in the 6-second clip"</strong> to the prompt and regenerate.</div></div>
+  </div>
+</div>
+<div class="conn"></div>
+
+<!-- S8 -->
+<div id="s8" class="scard">
+  <div class="nc"><div class="nclbl">Step</div><div class="ncnum">08</div><div class="ncico">🌊</div></div>
+  <div class="sb">
+    <div class="stag">Scene 04 · Interstitial Full-Screen</div>
+    <div class="stitle">Generate: The Sea Stops</div>
+    <div class="ssub">Mirror-Flat Ocean · Sora 2 Physics · Zero Motion · Wrong Silence · 3200K Navy</div>
+    <p>The most visually abstract of the five scenes. The wrongness of a perfect ocean is more frightening than any monster. Sora 2 is selected specifically for its superior physics simulation for water behavior and impossible physical states. Be strategic with credits here.</p>
+    <ul class="acts">
+      <li class="act"><div class="abull">1</div><div>Set the <strong>optical rig</strong> as shown below — ARRI, Anamorphic, 24mm wide, f/2</div></li>
+      <li class="act"><div class="abull">2</div><div>Select <strong>Genre: Horror</strong> · <strong>Model: Sora 2</strong> · Duration: <strong>6 seconds</strong></div></li>
+      <li class="act"><div class="abull">3</div><div>Camera Movement: <strong>Static — zero movement at water surface level</strong></div></li>
+      <li class="act"><div class="abull">4</div><div><strong>Note: Sora 2 is credit-intensive.</strong> Confirm your prompt is correct before generating. Preview carefully before spending credits on iterations</div></li>
+      <li class="act"><div class="abull">5</div><div>Paste the prompt and generate</div></li>
+      <li class="act"><div class="abull">6</div><div>If any waves appear: add <strong>"mirror-flat, physically impossible stillness, no waves of any kind, no ripples, the ocean surface is a perfect mirror"</strong> at start of prompt and regenerate</div></li>
+    </ul>
+    <div class="rig">
+      <div class="rigc"><div class="rigk">Camera</div><div class="rigv">ARRI</div></div>
+      <div class="rigc"><div class="rigk">Lens</div><div class="rigv">Anamorphic</div></div>
+      <div class="rigc"><div class="rigk">Focal Length</div><div class="rigv">24mm wide</div></div>
+      <div class="rigc"><div class="rigk">Aperture</div><div class="rigv">f/2</div></div>
+    </div>
+    <div class="schips">
+      <div class="sch"><div class="sk">Genre</div><div class="sv">Horror</div></div>
+      <div class="sch"><div class="sk">Model</div><div class="sv">Sora 2</div></div>
+      <div class="sch"><div class="sk">Duration</div><div class="sv">6 seconds</div></div>
+      <div class="sch"><div class="sk">Camera</div><div class="sv">Static at water level</div></div>
+      <div class="sch"><div class="sk">Color</div><div class="sv">3200K deep navy</div></div>
+      <div class="sch"><div class="sk">Motion</div><div class="sv">Zero — impossibly still</div></div>
+    </div>
+    <div class="parea">
+      <div class="plbl">Full Cinema Studio 3.5 Prompt — Copy Exactly</div>
+      <div class="ptag">Scene 04 · The Sea Stops · CS 3.5 · Sora 2 · Horror · ARRI Anamorphic 24mm f/2</div>
+      <div class="pbox">
+        <div class="ptext">Ancient Mediterranean sea surface at night. <em>The water is perfectly, physically impossibly still</em> — no waves, no ripples, no movement of any kind. Mirror-flat. Stars reflected in the black water below as perfectly as they appear above — completely undistorted. <em>The horizon is invisible</em> — sky and sea are the same darkness, one continuous field of absolute black and deep navy. A single distant torch flame on the far shore reflected as one unbroken vertical line — no distortion. Subsurface faint bioluminescence, blue-green, barely visible at depth. <em>Camera at water surface level, looking across. Absolutely still. Cold 3200K. Deep navy and absolute black. No characters.</em> The wrongness is in the perfection. Photorealistic. No digital brightness. No warm tones. <em>Villeneuve Arrival first-contact atmosphere — the silence before something vast arrives. Divine horror through physics failure, not through a visible face.</em></div>
+        <div class="pmeta">
+          <div class="pm">Camera: <strong>ARRI · Anamorphic · 24mm · f/2</strong></div>
+          <div class="pm">Genre: <strong>Horror</strong></div><div class="pm">Model: <strong>Sora 2</strong></div>
+          <div class="pm">Motion: <strong>Zero — impossible stillness</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="info"><div class="blbl">Why Sora 2 for Scene 04</div><div class="btext">Sora 2 has the strongest water physics simulation in Cinema Studio 3.5. The mirror-flat ocean — water rendered in a state it physically cannot exist in — is exactly the impossible physical state that Sora 2 handles best. Kling 3.0 may produce visible waves even when instructed not to. <strong>Sora 2 is the correct model for Scene 04.</strong></div></div>
+  </div>
+</div>
+<div class="conn"></div>
+
+<!-- S9 -->
+<div id="s9" class="scard">
+  <div class="nc"><div class="nclbl">Step</div><div class="ncnum">09</div><div class="ncico">🕊</div></div>
+  <div class="sb">
+    <div class="stag">Scene 05 · Footer Brand Finale</div>
+    <div class="stitle">Generate: White Wings in Dark</div>
+    <div class="ssub">Cave Interior · Pegasus Rising · Epic · Seedance 2.0 · IMAX · Slow Motion · Pure White</div>
+    <p>The brand statement. After four scenes of cold teal and black, pure white arrives. <strong>Epic genre — the only scene that breaks from Horror or Drama</strong> — because this moment is not dread but continuation. <strong>IMAX camera body for this scene only</strong> — maximizes the overwhelming scale of the wings against the cave ceiling.</p>
+    <ul class="acts">
+      <li class="act"><div class="abull">1</div><div>Set the <strong>optical rig</strong> as shown below — <strong>IMAX camera body</strong> for this scene only. Anamorphic, 35mm, f/1.8</div></li>
+      <li class="act"><div class="abull">2</div><div>Select <strong>Genre: Epic</strong> — the only scene using Epic genre</div></li>
+      <li class="act"><div class="abull">3</div><div>Select <strong>Model: Seedance 2.0</strong> · Duration: <strong>6 seconds</strong> · Camera: <strong>Static wide shot</strong></div></li>
+      <li class="act"><div class="abull">4</div><div>Paste the prompt — slow motion is specified in the prompt text</div></li>
+      <li class="act"><div class="abull">5</div><div>Key visual check: <strong>wings must be pure brilliant white</strong> — the brightest element in frame. If gray or dim: add <strong>"brilliant pure white, dazzling white, luminous backlit feathers, white is the only light source in frame"</strong> and regenerate</div></li>
+    </ul>
+    <div class="rig">
+      <div class="rigc"><div class="rigk">Camera</div><div class="rigv">IMAX — this scene only</div></div>
+      <div class="rigc"><div class="rigk">Lens</div><div class="rigv">Anamorphic</div></div>
+      <div class="rigc"><div class="rigk">Focal Length</div><div class="rigv">35mm</div></div>
+      <div class="rigc"><div class="rigk">Aperture</div><div class="rigv">f/1.8</div></div>
+    </div>
+    <div class="schips">
+      <div class="sch"><div class="sk">Genre</div><div class="sv">Epic</div></div>
+      <div class="sch"><div class="sk">Model</div><div class="sv">Seedance 2.0</div></div>
+      <div class="sch"><div class="sk">Duration</div><div class="sv">6 seconds</div></div>
+      <div class="sch"><div class="sk">Camera</div><div class="sv">IMAX — static wide</div></div>
+      <div class="sch"><div class="sk">Color</div><div class="sv">White in 3200K cold</div></div>
+      <div class="sch"><div class="sk">Motion</div><div class="sv">Wings rising / slow-mo</div></div>
+    </div>
+    <div class="parea">
+      <div class="plbl">Full Cinema Studio 3.5 Prompt — Copy Exactly</div>
+      <div class="ptag">Scene 05 · White Wings in Dark · CS 3.5 · Seedance 2.0 · Epic · IMAX Anamorphic 35mm f/1.8</div>
+      <div class="pbox">
+        <div class="ptext">Interior of a vast ancient cave. Torchlight from below — <em>absolute darkness in the upper two-thirds of frame.</em> Thousands of small owl shapes carved into the stone floor, lit from below in warm orange — the only warmth in the entire frame. Stone human figures frozen mid-movement pressed against cave walls in background. Then — <em>enormous pure white wings rising upward from below frame and filling the entire width of the screen. The wings are dazzling white — the only white object in a world of cold teal and black</em> — backlit from below, each feather luminous. White feathers detach and drift slowly in 50% slow motion, touching cave walls, stone figures, carved owls on the floor. A golden arm barely visible at left frame edge. <em>Camera completely still. Wide shot — IMAX scale. Cold 3200K ambient field with the white wings as the only luminous element. Not triumph — continuation.</em> Something survived that they did not intend. Villeneuve Contact transcendence aesthetic — wonder and dread in the same image.</div>
+        <div class="pmeta">
+          <div class="pm">Camera: <strong>IMAX · Anamorphic · 35mm · f/1.8</strong></div>
+          <div class="pm">Genre: <strong>Epic</strong></div><div class="pm">Model: <strong>Seedance 2.0</strong></div>
+          <div class="pm">Motion: <strong>Wings rising — 50% slow-mo</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="tip"><div class="blbl">Why IMAX + Seedance 2.0 for Scene 05</div><div class="btext">IMAX camera body produces an enormous scale differential — the cave becomes cathedral-sized and the wings become truly overwhelming. Seedance 2.0's physics simulation handles individual feather drift at slow-motion speed with natural air-resistance behavior. Together they make Scene 05 the visual peak of the five scenes.</div></div>
+  </div>
+</div>
+<div class="conn"></div>
+
+<!-- S10 -->
+<div id="s10" class="scard">
+  <div class="nc"><div class="nclbl">Step</div><div class="ncnum">10</div><div class="ncico">✓</div></div>
+  <div class="sb">
+    <div class="stag cst">QC, Export & Deploy</div>
+    <div class="stitle">Review, Approve & Implement</div>
+    <div class="ssub">QC Checklist · Download · File Naming · Website Placement Map</div>
+    <p>Every generated scene must pass the QC checklist before download. Then deploy on the MEDUSA website in the correct sequence and position for maximum impact.</p>
+    <ul class="qcl">
+      <li class="qci"><div class="qcb">✓</div><div><strong style="color:var(--ivory);">Optical correctness.</strong> ARRI color science present — rich shadow detail, clean highlights. IMAX scale visible in Scene 05. If result looks generic AI, optical rig was not set correctly — reconfigure and regenerate.</div></li>
+      <li class="qci"><div class="qcb">✓</div><div><strong style="color:var(--ivory);">Color temperature correct.</strong> Scenes 01, 03, 04: cold 3200K blue-teal, no warmth. Scene 02: warm 4500K amber. Scene 05: pure white against 3200K cold. Wrong color = reject.</div></li>
+      <li class="qci"><div class="qcb">✓</div><div><strong style="color:var(--ivory);">Genre visible in motion energy.</strong> Horror scenes: weighted, slow, psychologically pressured. Drama (Sc 02): measured and sacred. Epic (Sc 05): vast and inevitable.</div></li>
+      <li class="qci"><div class="qcb">✓</div><div><strong style="color:var(--ivory);">Scene 03 eyes closed — full 6 seconds.</strong> Watch every frame. Any open eyes = immediate reject. Non-negotiable.</div></li>
+      <li class="qci"><div class="qcb">✓</div><div><strong style="color:var(--ivory);">Camera within Villeneuve grammar.</strong> Scenes 01, 02, 04, 05: fully static. Scene 03: imperceptible slow dolly only. Any faster motion = reject.</div></li>
+      <li class="qci"><div class="qcb">✓</div><div><strong style="color:var(--ivory);">Atmosphere in 6 seconds.</strong> Show to someone unfamiliar. Do they feel dread, warmth, awe, or wrongness without explanation? If nothing: regenerate.</div></li>
+    </ul>
+    <div class="sdiv" style="padding:20px 0 14px;"><div class="sl"></div><div class="st">Download & Deploy</div><div class="sr"></div></div>
+    <ul class="acts">
+      <li class="act"><div class="abull">1</div><div>In Cinema Studio 3.5, click <strong>Download</strong> on the approved clip — select highest resolution MP4</div></li>
+      <li class="act"><div class="abull">2</div><div>Name files: <strong>MEDUSA_S01_SerpentsWake_CS35.mp4</strong> through <strong>MEDUSA_S05_WhiteWings_CS35.mp4</strong></div></li>
+      <li class="act"><div class="abull">3</div><div>Save all approved prompts and optical settings to <strong>MEDUSA_CS35_PROMPTS.txt</strong> for franchise continuity</div></li>
+      <li class="act"><div class="abull">4</div><div>Compress each file to under 8MB using HandBrake before web deployment — maintain 1080p resolution</div></li>
+    </ul>
+    <div class="qref">
+      <div class="qrrow"><div class="qrk">Scene 01 — Hero</div><div class="qrv">Full-screen hero, autoplay muted loop. Immediately establishes the MEDUSA visual world.</div></div>
+      <div class="qrrow"><div class="qrk">Scene 02 — About</div><div class="qrv">About section header. Plays once on scroll-into-view. The flame gutter is the emotional hook.</div></div>
+      <div class="qrrow"><div class="qrk">Scene 03 — Character</div><div class="qrv">Story section alongside character text. Autoplay muted loop. Shows who Medusa is.</div></div>
+      <div class="qrrow"><div class="qrk">Scene 04 — Interstitial</div><div class="qrv">Full-width between story chapters. Loop. The most abstract — the longest pause on the site.</div></div>
+      <div class="qrrow"><div class="qrk">Scene 05 — Footer</div><div class="qrv">Footer/CTA. Plays once. The brand finale — continuation after darkness. The franchise promise.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK REF -->
+<div class="sdiv"><div class="sl"></div><div class="st">Quick Reference · Cinema Studio 3.5 MEDUSA Settings</div><div class="sr"></div></div>
+<div class="qref">
+  <div class="qrrow"><div class="qrk">Platform</div><div class="qrv">higgsfield.ai → Cinema Studio 3.5</div></div>
+  <div class="qrrow"><div class="qrk">Mr. Higgs Brief</div><div class="qrv">Give full MEDUSA project brief at start of every session (Step 03)</div></div>
+  <div class="qrrow"><div class="qrk">Elements Required</div><div class="qrv">Build @MEDUSA_AFTER (MEDUSA_REF_AFTER.jpg) and @STONE_GARDEN before Scene 03</div></div>
+  <div class="qrrow"><div class="qrk">Duration All Scenes</div><div class="qrv">6 seconds (slightly longer than Freepik/Veo 3 to allow Cinema Studio motion grammar to breathe)</div></div>
+  <div class="qrrow"><div class="qrk">Ratio All Scenes</div><div class="qrv">16:9 widescreen</div></div>
+  <div class="qrrow"><div class="qrk">Camera Scenes 01–04</div><div class="qrv">ARRI · Anamorphic · aperture f/1.8–f/2</div></div>
+  <div class="qrrow"><div class="qrk">Camera Scene 05 ONLY</div><div class="qrv">IMAX · Anamorphic · 35mm · f/1.8</div></div>
+  <div class="qrrow"><div class="qrk">Scene 01 — Horror / Kling 3.0</div><div class="qrv">Serpent macro, cold 3200K, 100mm macro, static</div></div>
+  <div class="qrrow"><div class="qrk">Scene 02 — Drama / Kling 3.0</div><div class="qrv">Temple lamp, warm 4500K, 35mm, static</div></div>
+  <div class="qrrow"><div class="qrk">Scene 03 — Horror / Seedance 2.0</div><div class="qrv">@MEDUSA_AFTER @STONE_GARDEN, 50mm, imperceptible dolly, eyes closed</div></div>
+  <div class="qrrow"><div class="qrk">Scene 04 — Horror / Sora 2</div><div class="qrv">Mirror-flat ocean, 24mm wide, 3200K navy, static (Sora 2 for water physics)</div></div>
+  <div class="qrrow"><div class="qrk">Scene 05 — Epic / Seedance 2.0</div><div class="qrv">Pegasus rising, IMAX, 35mm, slow-motion feathers, white in cold</div></div>
+  <div class="qrrow"><div class="qrk">Scene 03 Non-Negotiable</div><div class="qrv">Eyes closed for entire 6 seconds — reject immediately if open</div></div>
+  <div class="qrrow"><div class="qrk">Still Ocean Fix</div><div class="qrv">Add at prompt start: "mirror-flat, physically impossible stillness, no waves, no ripples"</div></div>
+  <div class="qrrow"><div class="qrk">White Wings Fix</div><div class="qrv">Add: "brilliant pure white, dazzling white, luminous backlit feathers, white is the only light source"</div></div>
+  <div class="qrrow"><div class="qrk">Camera Motion Fix</div><div class="qrv">Add: "camera locked off, absolutely still, zero movement, no shake, no drift, no handheld"</div></div>
+</div>
+<div class="fdiv"></div>
+</div>
+
+<div class="footer">
+  <div class="fl">MEDUSA · CINEMA STUDIO 3.5 · UMBRA STREAM</div>
+  <div class="ft">"Built for the modern gaze. Rooted in ancient unease."</div>
+  <div class="fc">Cinema Studio 3.5 Beginner's Guide · Confidential · Umbra Stream LLC · All Rights Reserved</div>
+</div>
+</body>
+</html>
